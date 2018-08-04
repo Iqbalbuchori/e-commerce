@@ -15,7 +15,6 @@
 			{
 				echo $message;
 				Session::put('message',null);
-
 			}
            ?>
 		</p>

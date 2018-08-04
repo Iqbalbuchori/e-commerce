@@ -3,24 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
 use DB;
 use Session;
+use Hash;
 
 class CustomerController extends Controller
 {
-    //
+    
+    public function index()
+    {
+        $customer_id = Auth::user()->customer_id;
+        $customer = User::where('customer_id', $customer_id)->first();
+        return view('pages.index', compact('customer'));
+    }
+
     public function buatCustomer(Request $req)
     {
        
         $customer = DB::table('tbl_customer')->insert([
             'customer_name' => $req->customer_name,
             'customer_email' => $req->customer_email,
-            'password' => bcrypt($req->password),
+            'password' => md5($req->password),
             'mobile_number' => $req->mobile_number,
             'status_jual' => "0"
         ]);
 
-        Session::put('customer_name',$request->customer_name);
+        Session::put('customer_name',$req->customer_name);
         return redirect('/');      
 
     }
@@ -42,13 +51,16 @@ class CustomerController extends Controller
                 
                 return redirect('/login-check');
              }
-             
+
     }
 
-    public function Customer()
-  {
-     
-        return view('pages.Customer');
-  }
+    public function customer()
+    {
+       $customer_info=DB::table('tbl_customer')->get();
+       $manage_category=view('pages.customer')
+           ->with('customer_info',$customer_info);
+       return view('customer')
+           ->with('pages.customer');    
+    }
 
 }

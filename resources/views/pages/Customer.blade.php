@@ -13,9 +13,9 @@
 						<div class="bill-to">
 							<div class="form-one">
 								<form action="" method="get">
-                                    
+								@foreach( $customer_info as $v_customer)
 								<p>Nama</p>
-								<li class="list-group-item text-right"><span class="pull-left"></span></li><br>
+								<li class="list-group-item text-right"><span class="pull-left"><span>{{ $v_customer->customer_name }}</span></li><br>
 								<p>E-mail</p>
 								<li class="list-group-item text-right"><span class="pull-left"></span></li><br>
 								<p>Mobile Number</p>
@@ -33,7 +33,7 @@
                                 <p>Status</p>
                                 <input type="text" name="shipping_mobile_number"  required="">
 		 -->
-								
+								@endforeach
 								</form>
 							</div>
 						</div>

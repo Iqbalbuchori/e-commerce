@@ -7,6 +7,7 @@ use DB;
 use App\Http\Requests;
 use Session;
 use Cart;
+use Hash;
 use Illuminate\Support\Facades\Redirect;
 class CheckoutController extends Controller
 {

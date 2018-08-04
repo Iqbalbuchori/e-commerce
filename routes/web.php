@@ -23,6 +23,8 @@ Route::get('/show-cart','CartController@show_cart');
 Route::get('/delete-to-cart/{rowId}','CartController@delete_to_cart');
 Route::post('/update-cart','CartController@update_cart');
 Route::get('/customer','CustomerController@customer');
+Route::get('/customer','CustomerController@index');
+
 //checkout routes are here======
 Route::get('/login-check','CheckoutController@login_check');
 Route::post('/customer_registration','CustomerController@buatCustomer');
